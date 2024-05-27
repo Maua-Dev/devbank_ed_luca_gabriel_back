@@ -29,13 +29,13 @@ class Environments:
         self.stage = STAGE[os.environ.get("STAGE")]
 
         
-    # @staticmethod 
-    # def post_transaction_repo():
-    #     if Environments.get_envs().stage == STAGE.TEST:
-    #         from .repo.transaction_repository_mock import TransactionRepositoryMock
-    #         return TransactionRepositoryMock
-    #     else:
-    #         raise EnvironmentNotFound("STAGE")
+    @staticmethod 
+    def post_transaction_repo():
+        if Environments.get_envs().stage == STAGE.TEST:
+            from .repo.transaction_repository_mock import TransactionRepositoryMock
+            return TransactionRepositoryMock
+        else:
+            raise EnvironmentNotFound("STAGE")
         
     @staticmethod
     def get_client_repo():
