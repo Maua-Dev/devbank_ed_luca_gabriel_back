@@ -25,7 +25,7 @@ def get_client(account: str):
     try:
         client = my_app.client_repository.get_client_by_account(account)
         if client is None:
-            raise HTTPException(status_code=404, detail="Client not found")
+            raise HTTPException(status_code=204, detail="Client not found")
         return client
     except ParamNotValidated as e:
         raise HTTPException(status_code=400, detail=str(e))
