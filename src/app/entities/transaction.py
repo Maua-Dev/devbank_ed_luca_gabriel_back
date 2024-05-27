@@ -3,20 +3,15 @@ from src.app.errors.entity_errors import ParamNotValidated
 from src.app.enums.transaction_type_enum import TransactionTypeEnum
 
 class Transaction:
-    price: float
-    current_balance: float
+    account: str
+    value: float
     transaction_type: TransactionTypeEnum
 
-    def __init__ (self, price: float, current_balance: float, transaction_type: TransactionTypeEnum):
-        validation_price = self.validate_price(price)
+    def __init__ (self, value: float, transaction_type: TransactionTypeEnum):
+        validation_price = self.validate_price(value)
         if validation_price[0] is False:
             raise ParamNotValidated("price", validation_price[1])
-        self.price = price
-
-        validation_current_balance = self.validate_current_balance(current_balance)
-        if validation_current_balance[0] is False:
-            raise ParamNotValidated("current_balance", validation_current_balance[1])
-        self.current_balance = current_balance
+        self.value = value
 
         validation_transaction_type = self.validate_transaction_type(transaction_type)
         if validation_transaction_type[0] is False:
@@ -31,16 +26,6 @@ class Transaction:
             return (False, "price must be a float")
         if price < 0:
             return (False, "price must be greater than 0")
-        return (True, "")
-    
-    @staticmethod
-    def validate_current_balance(current_balance: float) -> Tuple[bool, str]:
-        if current_balance is None:
-            return (False, "current_balance is required")
-        if type(current_balance) != float:
-            return (False, "current_balance must be a float")
-        if current_balance < 0:
-            return (False, "current_balance must be greater than 0")
         return (True, "")
     
     @staticmethod
