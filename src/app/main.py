@@ -14,8 +14,10 @@ class MyApp:
         self.transaction_repository = transaction_repository
 
 
-repo = Environments.get_item_repo()()
-my_app = MyApp(repo)
+repo_client = Environments.get_client_repo()()
+repo_transaction = Environments.get_transaction_repo()()
+
+my_app = MyApp(repo_client, repo_transaction)
 
 
 @app.get("/")
