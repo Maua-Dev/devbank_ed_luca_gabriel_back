@@ -18,6 +18,6 @@ class TransactionRepositoryMock(ITransactionRepository):
 
     def post_transaction(self, account_destiny: str, value: float, transaction_type: str) -> Transaction:
         new_transaction = Transaction(account_destiny, value, transaction_type)
-        self.transactions[self.next_id] = new_transaction
-        self.next_id += 1
+        new_id = max(self.transactions.keys()) + 1
+        self.transactions[new_id] = new_transaction
         return new_transaction
