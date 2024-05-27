@@ -8,7 +8,7 @@ class IClientRepository(ABC):
         pass
 
     @abstractmethod
-    def get_client(self, agency: float):
+    def get_client(self, account: float):
         pass
 
     @abstractmethod
