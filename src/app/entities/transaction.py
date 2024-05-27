@@ -15,12 +15,12 @@ class Transaction:
             raise ParamNotValidated("price", validation_price[1])
         self.value = value
 
-        validation_transaction_type = self.validate_transaction_type(
-            transaction_type)
-        if validation_transaction_type[0] is False:
-            raise ParamNotValidated(
-                "transaction_type", validation_transaction_type[1])
-        self.transaction_type = transaction_type
+        # validation_transaction_type = self.validate_transaction_type(
+        #     transaction_type)
+        # if validation_transaction_type[0] is False:
+        #     raise ParamNotValidated(
+        #         "transaction_type", validation_transaction_type[1])
+        # self.transaction_type = transaction_type
 
     @staticmethod
     def validate_account_destiny(account_destiny: str) -> Tuple[bool, str]:
@@ -40,13 +40,13 @@ class Transaction:
             return (False, "price must be greater than 0")
         return (True, "")
 
-    @staticmethod
-    def validate_transaction_type(transaction_type: TransactionTypeEnum) -> Tuple[bool, str]:
-        if transaction_type is None:
-            return (False, "transaction_type is required")
-        if type(transaction_type) != TransactionTypeEnum:
-            return (False, "transaction_type must exist in TransactionTypeEnum")
-        return (True, "")
+    # @staticmethod
+    # def validate_transaction_type(transaction_type: TransactionTypeEnum) -> Tuple[bool, str]:
+    #     if transaction_type is None:
+    #         return (False, "transaction_type is required")
+    #     if type(transaction_type) != TransactionTypeEnum:
+    #         return (False, "transaction_type must exist in TransactionTypeEnum")
+    #     return (True, "")
 
     def to_dict(self):
         return {
