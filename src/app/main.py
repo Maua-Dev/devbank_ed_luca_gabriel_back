@@ -1,8 +1,8 @@
 from fastapi import FastAPI, HTTPException, Query
 from mangum import Mangum
-from repo.client_repository_interface import IClientRepository
+from src.app.repo.client_repository_interface import IClientRepository
 from src.app.repo.transaction_repository_interface import ITransactionRepository
-from .environments import Environments
+from src.app.environments import Environments
 from .errors.entity_errors import ParamNotValidated
 
 app = FastAPI()
@@ -15,10 +15,9 @@ class MyApp:
 
 
 repo_client = Environments.get_client_repo()()
-repo_transaction = Environments.get_transaction_repo()()
+repo_transaction = Environments.post_transaction_repo()()
 
 my_app = MyApp(repo_client, repo_transaction)
-
 
 @app.get("/")
 def get_client(self, account: str):
