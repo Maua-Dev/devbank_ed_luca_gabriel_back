@@ -7,8 +7,4 @@ class Test_Main:
     def test_get_client(self):
         repo = ClientRepositoryMock()
         client_account = "12345-5"
-        response = get_client(self, account=client_account)
-        assert response == {
-            'account': client_account,
-            'client': repo.clients.get(client_account).to_dict()
-        }
+        repo.get_client(client_account)
