@@ -18,8 +18,11 @@ class ClientRepositoryMock(IClientRepository):
     def get_all_client(self) -> List[Client]:
         return self.clients.values()
 
-    def get_client(self, agency: float) -> Optional[Client]:
-        return self.clients.get(agency, None)
+    def get_client(self, account: str) -> Optional[Client]:
+        for client in self.clients.values():
+            if client.account == account:
+                return client
+        return None
     
     def create_client(self, client: Client, id: int) -> Client:
         self.clients[id] = client
